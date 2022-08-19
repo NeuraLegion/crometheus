@@ -15,10 +15,10 @@ describe Crometheus do
   describe ".make_standard_exports" do
     it "returns a ProcFSExports object" do
       {% if flag?(:linux) %}
-      Crometheus.make_standard_exports(:x, "", nil).should(
+        Crometheus.make_standard_exports(:x, "", nil).should(
           be_a Crometheus::StandardExports::ProcFSExports)
       {% else %}
-      Crometheus.make_standard_exports(:x, "", nil).should(
+        Crometheus.make_standard_exports(:x, "", nil).should(
           be_a Crometheus::StandardExports)
       {% end %}
     end
@@ -28,7 +28,7 @@ end
 describe Crometheus::StandardExports::ProcFSExports do
   it "should return appropriate samples from procfs" do
     exports = Crometheus::StandardExports::ProcFSExports.new(:x, "",
-      nil, 26231, "./spec/proc")
+      nil, 26231_i64, "./spec/proc")
     samples = get_samples(exports)
 
     samples.should contain Crometheus::Sample.new(56274944.0, suffix: "virtual_memory_bytes")
