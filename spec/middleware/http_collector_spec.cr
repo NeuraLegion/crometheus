@@ -10,7 +10,7 @@ def request(collector, method, resource, body : String? = nil)
     HTTP::Server::Response.new(IO::MultiWriter.new([] of IO))
   )
   collector.call(ctx)
-  return ctx
+  ctx
 end
 
 describe Crometheus::Middleware::HttpCollector do
@@ -83,7 +83,7 @@ describe Crometheus::Middleware::HttpCollector do
   end
 
   it "uses the default registry" do
-    collector = Crometheus::Middleware::HttpCollector.new
+    _collector = Crometheus::Middleware::HttpCollector.new
     metrics = Crometheus.default_registry.metrics
 
     metrics.find { |mm|

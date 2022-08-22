@@ -60,7 +60,7 @@ describe Crometheus::Registry do
     registry.namespace = "spec"
 
     gauge1 = Crometheus::Gauge[:test].new(:gauge1, "docstring1", registry)
-    gauge2 = Crometheus::Gauge.new(:gauge2, "docstring2", registry)
+    _gauge2 = Crometheus::Gauge.new(:gauge2, "docstring2", registry)
 
     counter = Crometheus::Counter[:test,
       :label1, :label2, :label3, :label4, :label5, :label6, :label7,

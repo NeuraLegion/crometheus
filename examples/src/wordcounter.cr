@@ -59,7 +59,7 @@ word_counter = WordCounter.new
 
 puts "Type a line of text, then visit http://#{reg.host}:#{reg.port}."
 puts "Press Ctrl+D to quit."
-while true
+loop do
   line = gets
   if line.nil?
     break

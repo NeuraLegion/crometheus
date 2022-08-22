@@ -64,7 +64,7 @@ module Crometheus
     # Crometheus).
     def self.valid_label?(label : Symbol)
       return false if :quantile == label
-      return super
+      super
     end
   end
 end

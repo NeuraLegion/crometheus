@@ -54,7 +54,7 @@ module Crometheus
         raise ArgumentError.new "Registered metrics must have unique names"
       end
       @metrics << metric
-      @metrics.sort_by! { |mm| mm.name }
+      @metrics.sort_by!(&.name)
     end
 
     # Removes a `Metric` from the registry. The `Metric` keeps its
@@ -77,7 +77,7 @@ module Crometheus
       spawn do
         run_server
       end
-      return true
+      true
     end
 
     # Stops the HTTP server, then returns `true`. If the server is not
@@ -86,7 +86,7 @@ module Crometheus
       return false unless @server && @server_on
       @server.as(HTTP::Server).close
       Fiber.yield
-      return true
+      true
     end
 
     # Creates an `HTTP::Server` object bound to `host` and `port`
@@ -103,7 +103,7 @@ module Crometheus
       ensure
         @server_on = false
       end
-      return true
+      true
     end
 
     # Sets `namespace` to `str`, raising an `ArgumentError` if `str` is
